@@ -1,0 +1,461 @@
+:root {
+  --fonts-mondwest: "PP Mondwest", apple-system, sans-serif;
+  --fonts-neueBit: "PP NeueBit", apple-system, sans-serif;
+  --colors-primary: red;
+  /* --colors-background: #e21010; */
+  --fontSizes-1: 13px;
+  --fontSizes-2: 15px;
+  --fontSizes-3: 17px;
+}
+
+.headline {
+  font-size:120px;
+  font-family:"Helvetica"
+}
+
+.paragraph {
+  font-size:20px;
+  max-width:400px;
+}
+
+.image {
+
+}
+
+
+#homepage {
+  width: 100vw;
+    /* max-width: 500px; */
+    width: 100%; 
+    /* max-width:500px; */
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height:100%;
+    position:relative;
+    gap:50px;
+}
+
+#homepage_traits {
+  width: 100vw;
+  gap:50px;
+    /* max-width: 500px; */
+    width: 100%; 
+    /* max-width:500px; */
+    display: flex;
+    align-content: center;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height:100%;
+    position:relative
+}
+
+model-viewer {
+  width: 500px;
+  height: 500px;
+  max-width:100vw;
+}
+
+#homepage_merch {
+  width: 100vw;
+  gap:50px;
+    /* max-width: 500px; */
+    width: 100%; 
+    /* max-width:500px; */
+    display: flex;
+    align-content: center;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height:100vh;
+    position:relative
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+@media only screen and (max-width: 830px) {
+  /* Style adjustments for viewports that meet the condition */
+  #homepage {
+    flex-direction: column;
+    margin-top:0px;
+    
+  }
+  #homepage_traits {
+    flex-direction: column;
+    margin-top:0px;
+    /* max-width:90vw; */
+  }
+  #homepage_merch {
+    flex-direction: column;
+    /* margin-top:50px; */
+    /* max-width:90vw; */
+  }
+
+  .headline {
+    font-size:100px;
+    text-align:center;
+  }
+
+  .paragraph {
+    font-size:15px;
+    text-align:center;
+  }
+
+  .image {
+    max-width:400px;
+  }
+  
+}
+
+@media only screen and (max-width: 500px) {
+  /* Style adjustments for viewports that meet the condition */
+  #homepage {
+    flex-direction: column;
+    margin-top:0px;
+  }
+  #homepage_traits {
+    flex-direction: column;
+    margin-top:0px;
+  }
+
+  .headline {
+    font-size:50px
+  }
+
+  .paragraph {
+    font-size:15px
+  }
+
+  .image {
+    max-width:400px;
+  }
+  
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.shantell-sans {
+  font-family: "Shantell Sans", cursive;
+}
+  
+  .helvetica { 
+  font-family: Helvetica Neue,Helvetica,Arial,sans-serif; 
+  }
+  
+html,
+body {
+  /* font-family: "Shantell Sans"; */
+  background-color:red;
+  font-family:"Helvetica"
+}
+
+a {
+  color: var(--colors-primary);
+  text-decoration: none;
+}
+
+p {
+  /* font-family: "PP Mondwest"; */
+  font-size: 1.25rem;
+}
+
+.image {
+/* max-width:90vw;
+height:auto;
+width:100%; */
+}
+
+.image_traits {
+  max-width:90vw;
+}
+
+.twitter-timeline {
+ width:90vw;
+ height:100vh;
+  /* max-width:90vw; */
+
+}
+
+main {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  min-height: auto;
+  z-index: 0;
+}
+
+.content {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.traits {
+  height: 60vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content__img {
+  max-width: 250px;
+  height: 350px;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+@media screen and (min-width: 50em) {
+  .content {
+    height: 100vh;
+    overflow: hidden;
+  }
+}
+
+.container {
+  width: 100vw;
+  min-height: 100vh;
+  background: var(--colors-background);
+}
+
+.container#dark {
+  background: var(--colors-primary);
+}
+
+.gradient {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 200px;
+  background: var(--colors-background);
+  background: linear-gradient(
+    0deg,
+    rgba(40, 40, 40, 0) 0%,
+    var(--colors-background) 100%
+  );
+}
+
+/* nav */
+nav {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  text-transform: uppercase;
+  z-index: 1000000 !important;
+  max-width: 100vw;
+}
+
+nav#light a {
+  color:red;
+}
+
+nav .nav-links {
+  display: flex;
+}
+
+nav .nav-logo .nav-link,
+nav .nav-links .nav-link {
+  padding: 1rem;
+}
+
+nav .nav-logo {
+  font-size: 1.5rem;
+}
+
+/* header */
+header {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+header #name {
+  /* font-family: ""; */
+  font-size: 4.575rem;
+}
+
+/* footer */
+footer {
+  position: absolute;
+  /* bottom: 0; */
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+}
+
+footer#relative {
+  padding: 4rem 2rem;
+  position: relative;
+}
+
+footer .footer-col {
+  flex: 1;
+  text-align: center;
+}
+
+footer .footer-col p {
+  font-size: 0.825rem;
+}
+
+footer#light p {
+  color: var(--colors-background);
+}
+
+/* about */
+section.about {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding-left: 15%;
+  padding-right: 15%;
+}
+
+section.about .about-col p {
+  color: var(--colors-background);
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 900px) {
+  section.about {
+    gap: 0;
+    flex-direction: column;
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+
+  section.about .about-col p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+/* studies */
+section.studies {
+  width: 100%;
+  padding-top: 10rem;
+}
+
+section.studies .study {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--colors-primary);
+}
+
+section.studies .study#final-study {
+  border-bottom: 1px solid var(--colors-primary);
+}
+
+section.studies .study > div {
+  padding: 1rem;
+}
+
+section.studies .study .study-category {
+  flex: 2;
+  text-transform: uppercase;
+}
+
+section.studies .study .study-icon {
+  flex: 2;
+}
+
+section.studies .study .study-icon .study-icon-img {
+  width: 100px;
+  height: 100px;
+  background: var(--colors-primary);
+  border-radius: 2rem;
+}
+
+section.studies .study .study-name {
+  flex: 10;
+  font-family: "PP Mondwest";
+  font-size: 5rem;
+}
+
+section.studies .study .study-year {
+  flex: 1;
+}
+
+@media (max-width: 900px) {
+  section.studies .study .study-category {
+    font-size: 0.75rem;
+  }
+
+  section.studies .study .study-year {
+    display: none;
+  }
+
+  section.studies .study .study-icon .study-icon-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 0.5rem;
+  }
+
+  section.studies .study .study-name {
+    font-size: 2rem;
+  }
+}
+
+#project-1 {
+  background: url("./images/01.png") no-repeat 50% 50%;
+  background-size: cover;
+}
+
+#project-2 {
+  background: url("./images/02.png") no-repeat 50% 50%;
+  background-size: cover;
+}
+
+#project-3 {
+  background: url("./images/03.png") no-repeat 50% 50%;
+  background-size: cover;
+}
+
+#project-4 {
+  background: url("./images/04.png") no-repeat 50% 50%;
+  background-size: cover;
+}
+
+#project-5 {
+  background: url("./images/05.png") no-repeat 50% 50%;
+  background-size: cover;
+}
+
+#project-6 {
+  background: url("./images/06.png") no-repeat 50% 50%;
+  background-size: cover;
+}
+
+#project-7 {
+  background: url("./images/07.png") no-repeat 50% 50%;
+  background-size: cover;
+}
+
+#project-8 {
+  background: url("./images/08.png") no-repeat 50% 50%;
+  background-size: cover;
+}
