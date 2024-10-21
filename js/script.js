@@ -7,7 +7,7 @@
     distance: (x1, y1, x2, y2) => Math.hypot(x2 - x1, y2 - y1),
   };
 
-  // get the mouse position
+  // get the mouse positions
   const getMousePos = (ev) => {
     let posx = 0;
     let posy = 0;
@@ -156,6 +156,24 @@
 
   preloadImages().then(() => {
     new ImageTrail();
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const link = document.getElementById('randomLink');
+
+    // Fetch and parse the JSON file
+    fetch('/js/crudeboys_image.json')
+        .then(response => response.json())
+        .then(data => {
+            // Attach a click event listener to the link
+            link.addEventListener('click', function(e) {
+                e.preventDefault(); // Prevent the default anchor link behavior
+                const randomIndex = Math.floor(Math.random() * data.length); // Get a random index
+                const randomUrl = data[randomIndex].meta.image; // Assume we want to link to the 'image' URL
+                window.open(randomUrl, '_blank').focus(); // Open the random URL in a new tab/window and focus it
+            });
+        })
+        .catch(error => console.error('Error loading the JSON:', error));
   });
 }
 
