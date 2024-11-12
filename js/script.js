@@ -175,5 +175,77 @@
         })
         .catch(error => console.error('Error loading the JSON:', error));
   });
+
+  // Add to your existing script.js
+  function searchCard() {
+    const searchInput = document.getElementById('cardSearch');
+    const cardNumber = parseInt(searchInput.value);
+    
+    if (cardNumber < 1 || cardNumber > 522 || isNaN(cardNumber)) {
+        alert('Please enter a valid card number between 1-522');
+        return;
+    }
+
+    // Calculate inscription number range
+    const inscriptionStart = 109748927;
+    const inscriptionNumber = inscriptionStart + (cardNumber - 1);
+    
+    // Construct the image URL
+    const imageUrl = `https://bafybeidm3sremjulcdqefulerybnjqtzcf2o3vvyu5ayg35lbthmhxs5hi.ipfs.dweb.link/${cardNumber}.png`;
+    
+    // Remove existing search result if any
+    const existingResult = document.querySelector('.search-result');
+    if (existingResult) {
+        existingResult.remove();
+    }
+
+    // Create new result container
+    const resultDiv = document.createElement('div');
+    resultDiv.className = 'search-result';
+    resultDiv.style.display = 'block';
+
+    // Add close button
+    const closeButton = document.createElement('span');
+    closeButton.className = 'close-button';
+    closeButton.innerHTML = '×';
+    closeButton.onclick = () => resultDiv.remove();
+
+    // Create card details container
+    const cardDetails = document.createElement('div');
+    cardDetails.className = 'card-details';
+    cardDetails.innerHTML = `
+        <h2>Crudeboy #${cardNumber}</h2>
+        <p>Inscription #${inscriptionNumber}</p>
+        <div class="card-links">
+            <a href="https://doge.ordinalswallet.com/inscription/${inscriptionNumber}" target="_blank">View on Ordinals Explorer</a>
+            <a href="https://doggy.market/inscription/${inscriptionNumber}" target="_blank">View on Doggy Market</a>
+        </div>
+    `;
+
+    // Add card image with click functionality
+    const img = document.createElement('img');
+    img.src = imageUrl;
+    img.alt = `Crudeboy #${cardNumber}`;
+    img.style.cursor = 'pointer';
+    img.onclick = () => window.open(imageUrl, '_blank');
+
+    // Assemble the components
+    resultDiv.appendChild(closeButton);
+    resultDiv.appendChild(img);
+    resultDiv.appendChild(cardDetails);
+    document.body.appendChild(resultDiv);
+  }
+
+  // Add keyboard support
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('cardSearch');
+    if (searchInput) {
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchCard();
+            }
+        });
+    }
+  });
 }
 
