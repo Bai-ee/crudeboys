@@ -18,7 +18,9 @@
   max-width:400px;
 }
 
+.image {
 
+}
 
 
 
@@ -477,107 +479,20 @@ section.studies .study .study-year {
   background-size: cover;
 }
 
-.search-container {
+/* Add these new styles right after #project-8 */
+.game-container {
   position: fixed;
-  top: 80px;
+  bottom: 20px;
   right: 20px;
   z-index: 1000;
   display: flex;
-  gap: 10px;
-}
-
-.card-search-input {
-  padding: 8px 12px;
-  border: 2px solid #648A2A;
-  border-radius: 4px;
-  font-size: 16px;
-  width: 200px;
-  background: rgba(255, 255, 255, 0.9);
-}
-
-.search-button {
-  padding: 8px 16px;
-  background: #648A2A;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background 0.3s ease;
-}
-
-.search-button:hover {
-  background: #4A6820;
-}
-
-.search-result {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(255, 255, 255, 0.95);
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  z-index: 1001;
-}
-
-.search-result img {
-  max-width: 300px;
-  height: auto;
-}
-
-.close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
-  font-size: 24px;
-  color: #333;
-}
-
-.card-details {
-    margin-top: 15px;
-    text-align: center;
-}
-
-.card-details h2 {
-    margin: 0;
-    color: #333;
-    font-size: 24px;
-}
-
-.card-details p {
-    margin: 10px 0;
-    color: #666;
-}
-
-.card-links {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 15px;
-}
-
-.card-links a {
-    padding: 8px 16px;
-    background: #648A2A;
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-    transition: background 0.3s ease;
-}
-
-.card-links a:hover {
-    background: #4A6820;
-}
-
-.game-container {
-  display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 40px;
+  background: rgba(255, 255, 255, 0.9);
   padding: 20px;
+  border-radius: 8px;
+  width: 340px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .game-board {
