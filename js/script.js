@@ -181,7 +181,8 @@
     const gameState = {
         board: Array(9).fill(''),
         currentPlayer: 'X',
-        gameActive: true
+        gameActive: true,
+        isAIGame: true
     };
 
     const statusDisplay = document.querySelector('.game-status');
@@ -192,13 +193,36 @@
         const cell = e.target;
         const index = parseInt(cell.getAttribute('data-index'));
 
-        if (gameState.board[index] !== '' || !gameState.gameActive) return;
+        if (gameState.board[index] !== '' || !gameState.gameActive || gameState.currentPlayer === 'X') return;
 
+        makeMove(index);
+
+        if (gameState.gameActive) {
+            setTimeout(() => {
+                const aiMove = getBestMove(gameState.board, 'X');
+                makeMove(aiMove);
+            }, 500);
+        }
+    }
+
+    function makeMove(index) {
         gameState.board[index] = gameState.currentPlayer;
-        cell.textContent = gameState.currentPlayer;
+        const cell = document.querySelector(`[data-index="${index}"]`);
+        
+        if (gameState.currentPlayer === 'O') {
+            const img = document.createElement('img');
+            img.src = 'images/o.png';
+            img.style.width = '80%';
+            img.style.height = '80%';
+            img.style.objectFit = 'contain';
+            cell.textContent = '';
+            cell.appendChild(img);
+        } else {
+            cell.textContent = gameState.currentPlayer;
+        }
 
         if (checkWin()) {
-            statusDisplay.textContent = `Player ${gameState.currentPlayer} wins!`;
+            statusDisplay.textContent = `${gameState.currentPlayer === 'X' ? 'CPU' : 'Player'} wins!`;
             gameState.gameActive = false;
             return;
         }
@@ -210,7 +234,7 @@
         }
 
         gameState.currentPlayer = gameState.currentPlayer === 'X' ? 'O' : 'X';
-        statusDisplay.textContent = `Player ${gameState.currentPlayer}'s turn`;
+        statusDisplay.textContent = `${gameState.currentPlayer === 'X' ? 'CPU' : 'Player'}'s turn`;
     }
 
     function checkWin() {
@@ -230,19 +254,95 @@
         return gameState.board.every(cell => cell !== '');
     }
 
+    function getBestMove(board, player) {
+        const opponent = player === 'X' ? 'O' : 'X';
+
+        // For the first move, make it random
+        if (board.filter(cell => cell !== '').length === 0) {
+            const availableCorners = [0, 2, 6, 8];
+            const allFirstMoves = [...availableCorners, 1, 3, 4, 5, 7];
+            return allFirstMoves[Math.floor(Math.random() * allFirstMoves.length)];
+        }
+
+        // Check for winning move
+        for (let i = 0; i < 9; i++) {
+            if (board[i] === '') {
+                board[i] = player;
+                if (checkWin()) {
+                    board[i] = '';
+                    return i;
+                }
+                board[i] = '';
+            }
+        }
+
+        // Check for blocking opponent's winning move
+        for (let i = 0; i < 9; i++) {
+            if (board[i] === '') {
+                board[i] = opponent;
+                if (checkWin()) {
+                    board[i] = '';
+                    return i;
+                }
+                board[i] = '';
+            }
+        }
+
+        // Take any available corner
+        const corners = [0, 2, 6, 8];
+        const availableCorners = corners.filter(corner => board[corner] === '');
+        if (availableCorners.length > 0) {
+            return availableCorners[Math.floor(Math.random() * availableCorners.length)];
+        }
+
+        // Take center if available
+        if (board[4] === '') return 4;
+
+        // Take any available side
+        const sides = [1, 3, 5, 7];
+        const availableSides = sides.filter(side => board[side] === '');
+        if (availableSides.length > 0) {
+            return availableSides[Math.floor(Math.random() * availableSides.length)];
+        }
+
+        // Take any available space
+        const availableMoves = board.reduce((acc, cell, index) => {
+            if (cell === '') acc.push(index);
+            return acc;
+        }, []);
+        return availableMoves[Math.floor(Math.random() * availableMoves.length)];
+    }
+
     function restartGame() {
         gameState.board = Array(9).fill('');
         gameState.currentPlayer = 'X';
         gameState.gameActive = true;
-        cells.forEach(cell => cell.textContent = '');
-        statusDisplay.textContent = `Player ${gameState.currentPlayer}'s turn`;
+        cells.forEach(cell => {
+            cell.textContent = '';
+            const img = cell.querySelector('img');
+            if (img) {
+                cell.removeChild(img);
+            }
+        });
+        statusDisplay.textContent = "CPU's turn";
+        
+        setTimeout(() => {
+            const aiMove = getBestMove(gameState.board, 'X');
+            makeMove(aiMove);
+        }, 500);
     }
 
+    // Add event listeners
     cells.forEach(cell => cell.addEventListener('click', handleCellClick));
     restartButton.addEventListener('click', restartGame);
-    statusDisplay.textContent = `Player ${gameState.currentPlayer}'s turn`;
+
+    // Start the game with CPU's move
+    setTimeout(() => {
+        const aiMove = getBestMove(gameState.board, 'X');
+        makeMove(aiMove);
+    }, 500);
   }
 
-  // Initialize game when DOM is loaded
+  // Initialize the game when the DOM is loaded
   document.addEventListener('DOMContentLoaded', initGame);
 }
