@@ -138,7 +138,7 @@ model-viewer {
 html,
 body {
   /* font-family: "Shantell Sans"; */
-  background-color:#FF8B19;
+  background-color:#4794b8;
   font-family: "Schoolbell", cursive;
 }
 
@@ -312,7 +312,9 @@ footer {
   display: flex;
   justify-content: space-between;
   justify-content: center;
-  padding-bottom:50px;
+  padding-bottom: 100px;
+  margin-top: 40px;
+  position: relative;
 }
 
 footer#relative {
@@ -680,4 +682,12 @@ section.studies .study .study-year {
 
 .doge-labs-link:hover {
     background: #4A6820;
+}
+
+.initial-text {
+    font-family: "Schoolbell", cursive;
+    font-size: 60px;
+    color: white;
+    text-align: center;
+    margin-top: 100px;
 }

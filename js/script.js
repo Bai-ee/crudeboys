@@ -161,6 +161,7 @@
   document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.querySelector('.search-input');
     const searchResults = document.querySelector('.search-results');
+    const initialText = document.querySelector('.initial-text');
     let cardsData = null;
 
     fetch('js/crudeboys_image.json')
@@ -175,8 +176,13 @@
         searchInput.addEventListener('input', function(e) {
             const searchTerm = e.target.value.trim();
             
+            // Hide initial text when user starts typing
+            if (initialText) {
+                initialText.style.display = 'none';
+            }
+            
             if (!searchTerm || !cardsData) {
-                searchResults.innerHTML = '';
+                searchResults.innerHTML = '<div class="initial-text">View your crudes</div>';
                 return;
             }
 
@@ -268,7 +274,7 @@
         }
 
         if (checkWin()) {
-            statusDisplay.textContent = `${gameState.currentPlayer === 'X' ? 'CPU' : 'You'} win!`;
+            statusDisplay.textContent = `${gameState.currentPlayer === 'X' ? 'You lose!' : 'You win!'}`;
             gameState.gameActive = false;
             return;
         }
