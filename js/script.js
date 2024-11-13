@@ -194,6 +194,12 @@
     }
 
     window.showCardDetails = function(id, name, image) {
+        // Extract card number from name (e.g., "Crudeboy #123" -> "123")
+        const cardNumber = name.split('#')[1];
+        
+        // Construct Doge Labs URL
+        const dogeLabsUrl = `https://doge-labs.com/#/collectible/crudeboys/${id}`;
+        
         const modal = document.createElement('div');
         modal.className = 'card-modal';
         modal.innerHTML = `
@@ -201,6 +207,9 @@
                 <img src="${image}" alt="${name}">
                 <p class="card-name">${name}</p>
                 <p class="card-id">ID: ${id}</p>
+                <div class="card-links">
+                    <a href="${dogeLabsUrl}" target="_blank" class="doge-labs-link">View on Doge Labs</a>
+                </div>
                 <button class="close-modal">Close</button>
             </div>
         `;
