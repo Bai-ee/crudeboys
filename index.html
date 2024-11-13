@@ -39,17 +39,16 @@
         <!-- Logo section within the nav -->
         <div class="nav-logo">
           <div class="nav-link">
-            <!-- <a href="#" id="randomLink" target="_blank"> -->
-              <!-- Emoji logo with adjusted line height and negative margin -->
+            <a href="#" id="randomLink" target="_blank">
               <h1 class="utf-paragraph" style="line-height: 1.2em; margin-top: calc(var(--scale-factor) * -2.2);">🃏</h1>
-            <!-- </a> -->
+            </a>
           </div>
         </div>
         
         <!-- Navigation links -->
         <div class="nav-links">
           <div class="nav-link"><a href="https://t.me/+5eB_Knk6sGA2NTEx" target="blank_" >Telegram</a></div>
-          <div class="nav-link"><a href="https://twitter.com/TheCrudeboysNFT"  target="blank_" >Twitter</a></div>
+          <div class="nav-link"><a href="https://twitter.com/TheCrudeboysNFT"  target="blank_" >X</a></div>
         </div>
       </nav>
 
@@ -71,35 +70,17 @@
       </section>
 
       <!-- Card promo section -->
-      <section class="content traits" style="background: linear-gradient(180deg, #5B910A 0%, #1B2B03 100%);
-      ;">
-        <!-- <div> -->
-          <!-- <div class="headline" style="text-align:center">Crudetraits</div> -->
-          <!-- <img class="image_traits" style="width:500px; max-width:90vw" src="./images/cardpromo.png" alt="Crudeboys Logo">
-         -->
-          <div class="iframe-container">
-            <iframe src="https://cruno-viewer.vercel.app/" class="w-full h-full" sandbox="allow-scripts allow-same-origin allow-popups" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-
-        <!-- </div> -->
-      </section>
-
-        <!-- Card promo section -->
-        <section class="content traits" style="background:red;
-        ;">
-          <div>
-            <!-- <div class="headline" style="text-align:center">Crudetraits</div> -->
-            <img class="image_traits" style="width:350px; max-width:90vw" src="./images/8f4ee304-08b8-4b8a-b4d1-acfee08d7cbb.avif" alt="Crudeboys Logo">
-            <div class="content-box">
-              <div class="headline">Crudeboys</div>
-              <div class="ibm-plex-mono-regular paragraph">
-                Crudeboys is a 522 count card collection on doginals based on the 52 card standard playing card deck.
-Inscription #s 109748927 - 109768927</b>
-              </div>
+      <section class="content traits" style="background: linear-gradient(180deg, #5B910A 0%, #1B2B03 100%);">
+        <div class="search-container">
+            <input type="text" placeholder="View Crudes (1-522)" class="search-input">
+            <div class="search-results">
+                <img src="${card.meta.image}" alt="${card.meta.name}">
+                <span class="view-text">view your crudes</span>
+                <div class="click-info">click card for details</div>
             </div>
-          </div>
-        </section>
-  
+        </div>
+        <div class="cards-grid"></div>
+      </section>
 
       <!-- Rare traits section -->
       <section class="content traits" style="background-color:#F29B4E; min-height:100vh">

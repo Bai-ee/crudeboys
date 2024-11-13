@@ -159,21 +159,58 @@
   });
 
   document.addEventListener('DOMContentLoaded', function() {
-    const link = document.getElementById('randomLink');
+    const searchInput = document.querySelector('.search-input');
+    const searchResults = document.querySelector('.search-results');
+    let cardsData = null;
 
-    // Fetch and parse the JSON file
-    fetch('/js/crudeboys_image.json')
+    fetch('js/crudeboys_image.json')
         .then(response => response.json())
         .then(data => {
-            // Attach a click event listener to the link
-            link.addEventListener('click', function(e) {
-                e.preventDefault(); // Prevent the default anchor link behavior
-                const randomIndex = Math.floor(Math.random() * data.length); // Get a random index
-                const randomUrl = data[randomIndex].meta.image; // Assume we want to link to the 'image' URL
-                window.open(randomUrl, '_blank').focus(); // Open the random URL in a new tab/window and focus it
-            });
+            cardsData = data;
+            setupSearch();
         })
-        .catch(error => console.error('Error loading the JSON:', error));
+        .catch(error => console.error('Error loading cards:', error));
+
+    function setupSearch() {
+        searchInput.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.trim();
+            
+            if (!searchTerm || !cardsData) {
+                searchResults.innerHTML = '';
+                return;
+            }
+
+            const card = cardsData.find(card => 
+                card.meta.name.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+
+            if (card) {
+                searchResults.innerHTML = `
+                    <img src="${card.meta.image}" alt="${card.meta.name}" onclick="showCardDetails('${card.id}', '${card.meta.name}', '${card.meta.image}')">
+                    <div class="info-text">click card for details</div>
+                `;
+            }
+        });
+    }
+
+    window.showCardDetails = function(id, name, image) {
+        const modal = document.createElement('div');
+        modal.className = 'card-modal';
+        modal.innerHTML = `
+            <div class="modal-content">
+                <img src="${image}" alt="${name}">
+                <p class="card-name">${name}</p>
+                <p class="card-id">ID: ${id}</p>
+                <button class="close-modal">Close</button>
+            </div>
+        `;
+        document.body.appendChild(modal);
+
+        modal.querySelector('.close-modal').onclick = () => modal.remove();
+        modal.onclick = (e) => {
+            if (e.target === modal) modal.remove();
+        };
+    };
   });
 
   // Add game initialization
@@ -222,7 +259,7 @@
         }
 
         if (checkWin()) {
-            statusDisplay.textContent = `${gameState.currentPlayer === 'X' ? 'CPU' : 'Player'} wins!`;
+            statusDisplay.textContent = `${gameState.currentPlayer === 'X' ? 'CPU' : 'You'} win!`;
             gameState.gameActive = false;
             return;
         }
@@ -234,7 +271,7 @@
         }
 
         gameState.currentPlayer = gameState.currentPlayer === 'X' ? 'O' : 'X';
-        statusDisplay.textContent = `${gameState.currentPlayer === 'X' ? 'CPU' : 'Player'}'s turn`;
+        statusDisplay.textContent = `${gameState.currentPlayer === 'X' ? 'CPU' : 'Your'} turn`;
     }
 
     function checkWin() {
